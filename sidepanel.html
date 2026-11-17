@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title>PocketFiles</title>
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-lockup">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4.5 6.5A2.5 2.5 0 0 1 7 4h4l2 2h4A2.5 2.5 0 0 1 19.5 8.5v8A2.5 2.5 0 0 1 17 19H7a2.5 2.5 0 0 1-2.5-2.5v-10Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M4.8 9h14.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <span class="brand-name">PocketFiles</span>
+        <span class="version-pill">DEMO</span>
+      </div>
+      <div class="top-actions">
+        <span id="connection-indicator" class="connection-indicator" title="Folder connection status"><i></i><span>Not connected</span></span>
+        <button id="theme-toggle" class="icon-button theme-toggle" type="button"
+          aria-label="Switch to dark theme" aria-pressed="false">
+          <svg class="theme-icon icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.8v2.1m0 14.2v2.1M2.8 12h2.1m14.2 0h2.1M5.5 5.5 7 7m10 10 1.5 1.5m0-13L17 7M7 17l-1.5 1.5"/></svg>
+          <svg class="theme-icon icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.1A8.5 8.5 0 0 1 8.9 3.8 8.7 8.7 0 1 0 20.2 15.1Z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="intro-row">
+        <div>
+          <h1>Find a file.</h1>
+        </div>
+        <button id="connect-button" class="button button-primary connect-button" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          <span>Connect folder</span>
+        </button>
+      </section>
+
+      <section class="search-section" aria-label="Search files">
+        <label class="search-box" for="search-input">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m15.5 15.5 4.2 4.2"/></svg>
+          <input id="search-input" type="search" placeholder="Search files and folders..." autocomplete="off" spellcheck="false">
+          <kbd>/</kbd>
+        </label>
+        <div class="search-meta"><span id="search-hint">Search this connected folder and its subfolders</span><span id="item-count">—</span></div>
+      </section>
+
+      <nav class="view-tabs" aria-label="File views">
+        <button class="view-tab active" data-view="all" type="button">All files</button>
+        <button class="view-tab" data-view="recent" type="button">Recent</button>
+        <button class="view-tab" data-view="favorites" type="button">Favorites</button>
+        <span class="tab-indicator" aria-hidden="true"></span>
+      </nav>
+
+      <section class="browser-card" aria-label="File browser">
+        <div class="browser-toolbar">
+          <div class="path-wrap">
+            <button id="up-button" class="icon-button up-button" type="button" aria-label="Go to parent folder" title="Go to parent folder" disabled>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7"/></svg>
+            </button>
+            <div id="breadcrumbs" class="breadcrumbs"><span class="crumb-muted">No folder selected</span></div>
+          </div>
+          <div class="browser-tools">
+            <button id="refresh-button" class="icon-button" type="button" aria-label="Refresh folder" title="Refresh folder" disabled>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5"/><path d="M5.6 9a7 7 0 0 1 11.8-2L20 12M4 12l2.6 5a7 7 0 0 0 11.8-2"/></svg>
+            </button>
+            <button id="layout-button" class="icon-button" type="button" aria-label="Switch layout" title="Switch layout">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div id="selection-toolbar" class="selection-toolbar" hidden>
+          <span id="selection-count">0 selected</span>
+          <div class="selection-actions">
+            <button id="compress-button" class="small-action" type="button" aria-label="Create ZIP from selected files and folders">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8l4 4v12H4V4h4Z"/><path d="M8 4v5h8V4M10 13h4m-4 3h4"/></svg>
+            </button>
+            <button id="copy-files-button" class="small-action" type="button" aria-label="Copy selected files">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h2"/></svg>
+            </button>
+            <button id="extract-button" class="small-action" type="button" hidden aria-label="Extract selected ZIP">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 19h16"/></svg>
+            </button>
+            <button id="download-button" class="small-action" type="button" aria-label="Save selected files">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 19h16"/></svg>
+            </button>
+            <button id="clear-selection" class="icon-button compact" type="button" aria-label="Clear selection" title="Clear selection">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div id="scan-status" class="scan-status" hidden>
+          <span class="spinner"></span><span id="scan-status-text">Indexing folder…</span>
+        </div>
+        <div id="file-list" class="file-list" role="list">
+          <div class="empty-state welcome-state">
+            <div class="empty-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 7A2.5 2.5 0 0 1 6 4.5h4l2 2h6A2.5 2.5 0 0 1 20.5 9v8A2.5 2.5 0 0 1 18 19.5H6A2.5 2.5 0 0 1 3.5 17V7Z"/><path d="M3.8 9.5h16.4"/></svg></div>
+            <h2>Start with a folder</h2>
+            <p>Choose a folder to browse and search its files. PocketFiles only sees folders you connect.</p>
+            <button class="button button-secondary" id="empty-connect-button" type="button">Choose a folder</button>
+          </div>
+        </div>
+        <div id="drop-overlay" class="drop-overlay" hidden><div><strong>Drop files to add them here</strong><span>Files will be copied into the open folder.</span></div></div>
+      </section>
+
+      <section class="quick-note">
+        <div class="note-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 6v5.2c0 4.6 3.2 8.1 7.5 9.8 4.3-1.7 7.5-5.2 7.5-9.8V6L12 3Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <div><strong>Your files stay on this device</strong><span>Nothing is uploaded. Access is limited to folders you choose.</span></div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span><span class="footer-dot"></span> Local workspace</span>
+      <span id="footer-status">Ready</span>
+    </footer>
+  </div>
+
+  <dialog id="preview-dialog" class="preview-dialog">
+    <div class="dialog-header">
+      <div class="dialog-title-wrap"><span id="preview-type" class="file-type-badge">FILE</span><div><h2 id="preview-name">File preview</h2><p id="preview-meta">—</p></div></div>
+      <button id="close-preview" class="icon-button" type="button" aria-label="Close preview"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div id="preview-content" class="preview-content"></div>
+    <div class="dialog-footer"><button id="preview-download" class="button button-secondary" type="button">Download file</button><button id="preview-close-bottom" class="button button-primary" type="button">Done</button></div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="zip.js"></script>
+  <script src="sidepanel.js"></script>
+</body>
+</html>

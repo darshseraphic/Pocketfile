@@ -1,0 +1,5 @@
+Brand asset notes
+
+- Keep the mark monochrome.
+- Prefer clear spacing and legible type.
+- Export a square icon for browser toolbars.

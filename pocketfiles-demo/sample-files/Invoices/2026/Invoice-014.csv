@@ -1,0 +1,4 @@
+invoice,date,client,amount,currency
+INV-014,2026-02-14,Northwind Studio,1250,USD
+INV-015,2026-03-02,Paper & Pine,840,USD
+INV-016,2026-03-19,Atlas Works,2100,USD

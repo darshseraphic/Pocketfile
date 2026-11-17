@@ -1,0 +1,3 @@
+Welcome to PocketFiles.
+
+Try searching for "brief", previewing this note, starring a file, and selecting multiple items to create a ZIP archive.
