@@ -1,0 +1,31 @@
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor and temporary files
+.idea/
+*.swp
+*.swo
+*~
+
+# Python local environments and generated files
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# PyInstaller output for the optional Desktop Bridge
+/native-host/build/
+/native-host/dist/
+/native-host/pocketfiles-native-host-launcher
+
+# Local environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
